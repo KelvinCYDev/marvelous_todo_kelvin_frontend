@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default function Search({ data, setData }) {
   Search.propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.string.isRequired,
     setData: PropTypes.func.isRequired,
   };
 

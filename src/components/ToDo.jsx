@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 
 const ToDo = ({ item, updateDone }) => {
   ToDo.propTypes = {
-    item: {
+    item: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       done: PropTypes.bool.isRequired,
-    },
+    }),
     updateDone: PropTypes.func.isRequired,
   };
 

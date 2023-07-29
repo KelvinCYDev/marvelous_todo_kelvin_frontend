@@ -12,6 +12,18 @@ function App() {
     getAllToDo(setToDo);
   }, []);
 
+  const doneListFilter = (array) => {
+    let result = [];
+    let temp = array.filter(
+      (item) => item.done != false && item.text.toLowerCase().includes(filter)
+    );
+    if (temp.length != 0) {
+      temp.reduce((a, b) => result.push(a.updatedAt > b.updatedAt ? a : b));
+    }
+    console.log(result);
+    return result.slice(0, 10);
+  };
+
   return (
     <Container className="p-5 mb-4 bg-light rounded-3">
       <Row>
@@ -50,30 +62,27 @@ function App() {
             <h5>To Do</h5>
             <hr />
           </Row>
-          {toDo
-            .filter(
-              (item) =>
-                item.done == false && item.text.toLowerCase().includes(filter)
-            )
-            .map((item) => (
-              <ToDo
-                key={item._id}
-                item={item}
-                updateDone={({ done }) => updateDone(item._id, done, setToDo)}
-              />
-            ))}
+          {toDo.length > 0 &&
+            toDo
+              .filter(
+                (item) =>
+                  item.done == false && item.text.toLowerCase().includes(filter)
+              )
+              .map((item) => (
+                <ToDo
+                  key={item._id}
+                  item={item}
+                  updateDone={({ done }) => updateDone(item._id, done, setToDo)}
+                />
+              ))}
         </Col>
         <Col>
           <Row>
             <h5>Done</h5>
             <hr />
           </Row>
-          {toDo
-            .filter(
-              (item) =>
-                item.done != false && item.text.toLowerCase().includes(filter)
-            )
-            .map((item) => (
+          {toDo.length > 0 &&
+            doneListFilter(toDo).map((item) => (
               <ToDo
                 key={item._id}
                 item={item}
