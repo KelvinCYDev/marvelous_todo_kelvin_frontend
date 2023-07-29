@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ToDo from "./components/ToDo";
-import { getAllToDo } from "./utils/HandleApi";
+import { getAllToDo, updateDone } from "./utils/HandleApi";
 import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
@@ -21,16 +21,31 @@ function App() {
             <h5>To Do</h5>
             <hr />
           </Row>
-          {toDo.map((item) => (
-            <ToDo
-              key={item._id}
-              text={item.text}
-              updateMode={() => updateMode(item._id, item.text)}
-              deleteToDo={() => deleteToDo(item._id, setToDo)}
-            />
-          ))}
+          {toDo
+            .filter((item) => item.done == false)
+            .map((item) => (
+              <ToDo
+                key={item._id}
+                item={item}
+                updateDone={({ done }) => updateDone(item._id, done, setToDo)}
+              />
+            ))}
         </Col>
-        <Col></Col>
+        <Col>
+          <Row>
+            <h5>Done</h5>
+            <hr />
+          </Row>
+          {toDo
+            .filter((item) => item.done != false)
+            .map((item) => (
+              <ToDo
+                key={item._id}
+                item={item}
+                updateDone={({ done }) => updateDone(item._id, done, setToDo)}
+              />
+            ))}
+        </Col>
       </Row>
     </Container>
   );
