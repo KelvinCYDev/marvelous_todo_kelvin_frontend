@@ -32,4 +32,13 @@ const updateDone = (toDoId, done, setToDo) => {
     .catch((err) => console.log(err));
 };
 
-export { getAllToDo, addToDo, updateDone };
+const deleteAll = (setToDo) => {
+  axios
+    .delete(`${baseUrl}/deleteAll`)
+    .then(() => {
+      getAllToDo(setToDo);
+    })
+    .catch((err) => console.log(err));
+};
+
+export { getAllToDo, addToDo, updateDone, deleteAll };

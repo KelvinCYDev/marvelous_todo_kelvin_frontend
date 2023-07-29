@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import ToDo from "./components/ToDo";
-import { getAllToDo, updateDone } from "./utils/HandleApi";
-import { Container, Row, Col } from "react-bootstrap";
+import { getAllToDo, updateDone, addToDo, deleteAll } from "./utils/HandleApi";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 function App() {
   const [toDo, setToDo] = useState([]);
-
+  const [text, setText] = useState("");
   useEffect(() => {
     getAllToDo(setToDo);
   }, []);
@@ -13,7 +13,31 @@ function App() {
   return (
     <Container className="p-5 mb-4 bg-light rounded-3">
       <Row>
-        <h2>Marvelous v2.0</h2>
+        <Col md="9">
+          <h2>Marvelous v2.0</h2>
+        </Col>
+        <Col>
+          <Button variant="danger" onClick={() => deleteAll(setToDo)}>
+            Delete all tasks
+          </Button>
+        </Col>
+      </Row>
+      <Row className="my-5">
+        <Col>
+          <input
+            type="text"
+            placeholder="Add ToDos..."
+            className="me-3"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <Button
+            variant="warning"
+            onClick={() => addToDo(text, setText, setToDo)}
+          >
+            Add
+          </Button>
+        </Col>
       </Row>
       <Row>
         <Col>
