@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import ToDo from "./components/ToDo";
+import { getAllToDo } from "./utils/HandleApi";
+import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [toDo, setToDo] = useState([]);
+
+  useEffect(() => {
+    getAllToDo(setToDo);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container className="p-5 mb-4 bg-light rounded-3">
+      <Row>
+        <h2>Marvelous v2.0</h2>
+      </Row>
+      <Row>
+        <Col>
+          <Row>
+            <h5>To Do</h5>
+            <hr />
+          </Row>
+          {toDo.map((item) => (
+            <ToDo
+              key={item._id}
+              text={item.text}
+              updateMode={() => updateMode(item._id, item.text)}
+              deleteToDo={() => deleteToDo(item._id, setToDo)}
+            />
+          ))}
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
+  );
 }
 
-export default App
+export default App;
