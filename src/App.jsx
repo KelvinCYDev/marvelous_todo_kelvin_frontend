@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import ToDo from "./components/ToDo";
 import { getAllToDo, updateDone, addToDo, deleteAll } from "./utils/HandleApi";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
+import Search from "./components/Search";
 
 function App() {
+  const [filter, setFilter] = useState("");
   const [toDo, setToDo] = useState([]);
   const [text, setText] = useState("");
   useEffect(() => {
@@ -24,19 +26,22 @@ function App() {
       </Row>
       <Row className="my-5">
         <Col>
-          <input
-            type="text"
-            placeholder="Add ToDos..."
-            className="me-3"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <Button
-            variant="warning"
-            onClick={() => addToDo(text, setText, setToDo)}
-          >
-            Add
-          </Button>
+          <InputGroup>
+            <Form.Control
+              placeholder="Add ToDos..."
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <Button
+              variant="warning"
+              onClick={() => addToDo(text, setText, setToDo)}
+            >
+              Add
+            </Button>
+          </InputGroup>
+        </Col>
+        <Col>
+          <Search data={filter} setData={setFilter} />
         </Col>
       </Row>
       <Row>
@@ -46,7 +51,10 @@ function App() {
             <hr />
           </Row>
           {toDo
-            .filter((item) => item.done == false)
+            .filter(
+              (item) =>
+                item.done == false && item.text.toLowerCase().includes(filter)
+            )
             .map((item) => (
               <ToDo
                 key={item._id}
@@ -61,7 +69,10 @@ function App() {
             <hr />
           </Row>
           {toDo
-            .filter((item) => item.done != false)
+            .filter(
+              (item) =>
+                item.done != false && item.text.toLowerCase().includes(filter)
+            )
             .map((item) => (
               <ToDo
                 key={item._id}
