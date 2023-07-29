@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { BiEdit } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 
-const ToDo = ({ item, updateDone }) => {
+const ToDo = ({ item, updateDone, updateMode, deleteToDo }) => {
   ToDo.propTypes = {
     item: PropTypes.shape({
       _id: PropTypes.string.isRequired,
@@ -10,6 +12,8 @@ const ToDo = ({ item, updateDone }) => {
       done: PropTypes.bool.isRequired,
     }),
     updateDone: PropTypes.func.isRequired,
+    updateMode: PropTypes.func.isRequired,
+    deleteToDo: PropTypes.func.isRequired,
   };
 
   const [checked, setChecked] = useState(item.done);
@@ -34,6 +38,10 @@ const ToDo = ({ item, updateDone }) => {
           onChange={handleChange}
         />
         {item.text}
+      </Col>
+      <Col>
+        <BiEdit className="mx-2" onClick={updateMode} />
+        <AiFillDelete className="mx-2" onClick={deleteToDo} />
       </Col>
     </Row>
   );

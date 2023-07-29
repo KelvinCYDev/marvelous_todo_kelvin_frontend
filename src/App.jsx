@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import ToDo from "./components/ToDo";
-import { getAllToDo, updateDone, addToDo, deleteAll } from "./utils/HandleApi";
+import {
+  getAllToDo,
+  updateDone,
+  addToDo,
+  updateToDo,
+  deleteToDo,
+  deleteAll,
+} from "./utils/HandleApi";
 import { Container, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import Search from "./components/Search";
 
@@ -8,9 +15,18 @@ function App() {
   const [filter, setFilter] = useState("");
   const [toDo, setToDo] = useState([]);
   const [text, setText] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [toDoId, setToDoId] = useState("");
+
   useEffect(() => {
     getAllToDo(setToDo);
   }, []);
+
+  const updateMode = (_id, text) => {
+    setIsUpdating(true);
+    setText(text);
+    setToDoId(_id);
+  };
 
   const doneListFilter = (array) => {
     let result = [];
@@ -46,9 +62,14 @@ function App() {
             />
             <Button
               variant="warning"
-              onClick={() => addToDo(text, setText, setToDo)}
+              onClick={
+                isUpdating
+                  ? () =>
+                      updateToDo(toDoId, text, setToDo, setText, setIsUpdating)
+                  : () => addToDo(text, setText, setToDo)
+              }
             >
-              Add
+              {isUpdating ? "Update" : "Add"}
             </Button>
           </InputGroup>
         </Col>
@@ -72,6 +93,8 @@ function App() {
                 <ToDo
                   key={item._id}
                   item={item}
+                  updateMode={() => updateMode(item._id, item.text)}
+                  deleteToDo={() => deleteToDo(item._id, setToDo)}
                   updateDone={({ done }) => updateDone(item._id, done, setToDo)}
                 />
               ))}
@@ -86,6 +109,8 @@ function App() {
               <ToDo
                 key={item._id}
                 item={item}
+                updateMode={() => updateMode(item._id, item.text)}
+                deleteToDo={() => deleteToDo(item._id, setToDo)}
                 updateDone={({ done }) => updateDone(item._id, done, setToDo)}
               />
             ))}

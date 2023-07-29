@@ -32,6 +32,27 @@ const updateDone = (toDoId, done, setToDo) => {
     .catch((err) => console.log(err));
 };
 
+const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
+  axios
+    .post(`${baseUrl}/update`, { _id: toDoId, text })
+    .then(() => {
+      setText("");
+      setIsUpdating(false);
+      getAllToDo(setToDo);
+    })
+    .catch((err) => console.log(err));
+};
+
+const deleteToDo = (_id, setToDo) => {
+  axios
+    .post(`${baseUrl}/delete`, { _id })
+    .then((data) => {
+      console.log(data);
+      getAllToDo(setToDo);
+    })
+    .catch((err) => console.log(err));
+};
+
 const deleteAll = (setToDo) => {
   axios
     .delete(`${baseUrl}/deleteAll`)
@@ -41,4 +62,4 @@ const deleteAll = (setToDo) => {
     .catch((err) => console.log(err));
 };
 
-export { getAllToDo, addToDo, updateDone, deleteAll };
+export { getAllToDo, addToDo, updateDone, updateToDo, deleteToDo, deleteAll };
