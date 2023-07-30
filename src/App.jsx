@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import ToDo from "./components/ToDo";
 import Search from "./components/Search";
 import Intervals from "./components/Intervals";
+import Confirm from "./components/confirmButton";
 import {
   getAllToDo,
   updateStatusDone,
@@ -71,9 +72,7 @@ function App() {
           <h2>Marvelous v2.0</h2>
         </Col>
         <Col>
-          <Button variant="danger" onClick={() => deleteAll(setToDo)}>
-            Delete all tasks
-          </Button>
+          <Confirm deleteAll={() => deleteAll(setToDo)} />
         </Col>
       </Row>
       <Row className="my-5">

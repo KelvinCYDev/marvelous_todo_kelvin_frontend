@@ -15,6 +15,11 @@ import { launch } from "puppeteer";
   );
   await deleteAll.press("Enter");
   await new Promise((r) => setTimeout(r, 2000));
+  const deleteAllConfirm = await page.$(
+    "body > div.fade.modal.show > div > div > div.modal-footer > button.btn.btn-danger"
+  );
+  await deleteAllConfirm.press("Enter");
+  await new Promise((r) => setTimeout(r, 2000));
 
   //Add multiple tasks
   async function add(text) {
