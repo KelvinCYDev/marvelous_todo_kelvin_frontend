@@ -52,7 +52,7 @@
 
 ## About The Project
 
-Combined with [https://github.com/KelvinCYDev/marvelous_todo_kelvin_frontend](https://github.com/KelvinCYDev/marvelous_todo_kelvin_backend), This is a simple full-stack todo app with the following features:
+Combined with [https://github.com/KelvinCYDev/marvelous_todo_kelvin_frontend](https://github.com/KelvinCYDev/marvelous_todo_kelvin_backend), this is a simple full-stack todo app with the following features:
 
 - User can create, update, and delete each To Do tasks.
 - Both lists are alphabetically sorted
