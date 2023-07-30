@@ -22,7 +22,7 @@ const Confirm = ({ deleteAll }) => {
         <Modal.Body>Are you sure?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            No
           </Button>
           <Button
             variant="danger"
