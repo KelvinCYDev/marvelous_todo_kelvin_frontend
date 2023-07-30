@@ -110,6 +110,10 @@ To get a local copy up and running, please follow the following steps.
    ```sh
    yarn run dev
    ```
+6. To run the Puppeteer unit test
+   ```sh
+   yarn test
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

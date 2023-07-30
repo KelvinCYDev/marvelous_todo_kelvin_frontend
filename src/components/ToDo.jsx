@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
@@ -40,8 +40,12 @@ const ToDo = ({ task, updateStatusDone, updateMode, deleteToDo }) => {
         {task.text}
       </Col>
       <Col>
-        <BiEdit className="mx-2" onClick={updateMode} />
-        <AiFillDelete className="mx-2" onClick={deleteToDo} />
+        <Button variant="secondary" onClick={updateMode} className="m-1">
+          <BiEdit className="icon" />
+        </Button>
+        <Button variant="danger" onClick={deleteToDo} className="m-1">
+          <AiFillDelete className="icon" />
+        </Button>
       </Col>
     </Row>
   );
