@@ -52,14 +52,14 @@
 
 ## About The Project
 
-This is a simple full-stack todo app with the following features:
+Combined with [https://github.com/KelvinCYDev/marvelous_todo_kelvin_frontend](https://github.com/KelvinCYDev/marvelous_todo_kelvin_backend), This is a simple full-stack todo app with the following features:
 
 - User can create, update, and delete each To Do tasks.
 - Both lists are alphabetically sorted
-- User can check and uncheck tasks. The tasks will appear in the corresponding columns ('To Do', 'Done')
+- Users can check and uncheck tasks. The tasks will appear in the corresponding columns ('To Do', 'Done')
 - The 'To Do' list is unlimited
-- The 'Done' list only shows 10 most recently completed tasks
-- Users can select the auto refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
+- The 'Done' list only shows the 10 most recently completed tasks
+- Users can select the auto-refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
 - As the user enters text in the search box, both columns are filtered to display only tasks matching the text entered thus far
 - User can delete all the tasks at once by pressing 'Delete all tasks'
 
@@ -77,7 +77,7 @@ This is a simple full-stack todo app with the following features:
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running, please follow the following steps.
 
 ### Prerequisites
 
@@ -90,7 +90,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. This is just the frontend part, make sure you have setup the backend and running
+1. This is just the frontend part, make sure you have set up the backend and running
    ```sh
    https://github.com/KelvinCYDev/marvelous_todo_kelvin_backend
    ```
@@ -119,10 +119,10 @@ To get a local copy up and running follow these simple example steps.
 
 - [x] CRUD for ToDo tasks
 - [x] Add "Done" status and timestamp for ToDo tasks
-- [x] Allow using checkbox to change To Do status
+- [x] Allow using the checkbox to change the To Do status
 - [x] ToDo task columns alphabetically ordering
-- [x] The 'Done' list only shows 10 most recently completed tasks
-- [x] Users can select the auto refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
+- [x] The 'Done' list only shows the 10 most recently completed tasks
+- [x] Users can select the auto-refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
 - [x] Searching functionality
 - [x] 'Delete all tasks' button
 
@@ -134,7 +134,7 @@ See the [open issues](https://github.com/KelvinCYDev/marvelous_todo_kelvin_front
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
