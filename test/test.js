@@ -2,7 +2,7 @@ import { launch } from "puppeteer";
 
 (async () => {
   // Initiate the browser
-  const browser = await launch({ headless: false });
+  const browser = await launch({ headless: false, defaultViewport: null });
   const page = await browser.newPage();
 
   // Go to the target website
