@@ -9,7 +9,7 @@
     <img src="assets/screenshot.png" alt="Logo">
   </a>
 
-  <h3 align="center">Marvelous V2.0 To Do Frontend</h3>s
+  <h3 align="center">Marvelous V2.0 To Do Frontend</h3>
 
   <p align="center">
     A simple To Do app!
