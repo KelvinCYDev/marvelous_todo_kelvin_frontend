@@ -4,7 +4,7 @@ import Search from "./components/Search";
 import Intervals from "./components/Intervals";
 import {
   getAllToDo,
-  updateDone,
+  updateStatusDone,
   addToDo,
   updateToDo,
   deleteToDo,
@@ -34,9 +34,25 @@ function App() {
     setToDoId(_id);
   };
 
+  const sort = (array) => {
+    return array.sort((a, b) => {
+      const textA = a.text.toUpperCase();
+      const textB = b.text.toUpperCase();
+      if (textA < textB) {
+        return -1;
+      }
+      if (textA > textB) {
+        return 1;
+      }
+      return 0;
+    });
+  };
+
   const toDoListFilter = (array) => {
-    return array.filter(
-      (task) => task.done == false && task.text.toLowerCase().includes(filter)
+    return sort(
+      array.filter(
+        (task) => task.done == false && task.text.toLowerCase().includes(filter)
+      )
     );
   };
 
@@ -46,12 +62,12 @@ function App() {
       (task) => task.done == true && task.text.toLowerCase().includes(filter)
     );
     if (temp.length > 10) {
-      temp.reduce((a, b) => result.push(a.updatedAt > b.updatedAt ? a : b));
-      result.slice(0, 10);
+      temp.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+      result = temp.slice(0, 10);
     } else {
       result = temp;
     }
-    return result;
+    return sort(result);
   };
 
   const ToDoTask = ({ task }) => {
@@ -67,7 +83,9 @@ function App() {
         task={task}
         updateMode={() => updateMode(task._id, task.text)}
         deleteToDo={() => deleteToDo(task._id, setToDo)}
-        updateDone={({ done }) => updateDone(task._id, done, setToDo)}
+        updateStatusDone={({ done }) =>
+          updateStatusDone(task._id, done, setToDo)
+        }
       />
     );
   };

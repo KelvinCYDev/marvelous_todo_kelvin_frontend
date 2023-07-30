@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 
-const ToDo = ({ task, updateDone, updateMode, deleteToDo }) => {
+const ToDo = ({ task, updateStatusDone, updateMode, deleteToDo }) => {
   ToDo.propTypes = {
     task: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       done: PropTypes.bool.isRequired,
     }),
-    updateDone: PropTypes.func.isRequired,
+    updateStatusDone: PropTypes.func.isRequired,
     updateMode: PropTypes.func.isRequired,
     deleteToDo: PropTypes.func.isRequired,
   };
@@ -24,9 +24,9 @@ const ToDo = ({ task, updateDone, updateMode, deleteToDo }) => {
 
   useEffect(() => {
     if (checked != task.done) {
-      updateDone({ done: checked });
+      updateStatusDone({ done: checked });
     }
-  }, [checked, updateDone, task.done]);
+  }, [checked, updateStatusDone, task.done]);
 
   return (
     <Row className="mb-3">
