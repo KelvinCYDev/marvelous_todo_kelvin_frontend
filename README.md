@@ -9,10 +9,10 @@
     <img src="assets/screenshot.png" alt="Logo">
   </a>
 
-  <h3 align="center">Marvelous V2.0 To Do Frontend</h3>
+  <h3 align="center">Marvelous V2.0 To-Do Frontend</h3>
 
   <p align="center">
-    A simple To Do app!
+    A simple To-Do app!
     <br />
     <br />
     ·
@@ -54,12 +54,12 @@
 
 Combined with [https://github.com/KelvinCYDev/marvelous_todo_kelvin_frontend](https://github.com/KelvinCYDev/marvelous_todo_kelvin_backend), this is a simple full-stack todo app with the following features:
 
-- User can create, update, and delete each To Do tasks.
+- User can create, update, and delete each To-Do task.
 - Both lists are alphabetically sorted
 - Users can check and uncheck tasks. The tasks will appear in the corresponding columns ('To Do', 'Done')
-- The 'To Do' list is unlimited
+- The 'To-Do' list is unlimited
 - The 'Done' list only shows the 10 most recently completed tasks
-- Users can select the auto-refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
+- Users can select the auto syncing period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
 - As the user enters text in the search box, both columns are filtered to display only tasks matching the text entered thus far
 - User can delete all the tasks at once by pressing 'Delete all tasks'
 
