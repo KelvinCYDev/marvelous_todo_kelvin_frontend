@@ -129,6 +129,7 @@ To get a local copy up and running, please follow the following steps.
 - [x] Users can select the auto-refresh period for the ToDo list (5 sec, 15 seconds, 30 seconds, 1 minute)
 - [x] Searching functionality
 - [x] 'Delete all tasks' button
+- [x] Puppeteer unit test
 
 See the [open issues](https://github.com/KelvinCYDev/marvelous_todo_kelvin_frontend/issues) for a full list of proposed features (and known issues).
 
