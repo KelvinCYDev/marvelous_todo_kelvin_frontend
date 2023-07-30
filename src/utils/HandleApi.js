@@ -25,7 +25,7 @@ const addToDo = (text, setText, setToDo) => {
 
 const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
   axios
-    .post(`${baseUrl}/update`, { _id: toDoId, text })
+    .put(`${baseUrl}/update`, { _id: toDoId, text })
     .then(() => {
       setText("");
       setIsUpdating(false);
@@ -36,7 +36,7 @@ const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
 
 const updateStatusDone = (toDoId, done, setToDo) => {
   axios
-    .post(`${baseUrl}/update`, { _id: toDoId, done })
+    .put(`${baseUrl}/update`, { _id: toDoId, done })
     .then(() => {
       getAllToDo(setToDo);
     })
