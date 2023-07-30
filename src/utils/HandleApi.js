@@ -7,7 +7,7 @@ const getAllToDo = (setToDo) => {
     .get(baseUrl)
     .then(({ data }) => {
       // console.log("data ---", data);
-      setToDo(data.sort());
+      setToDo(data);
     })
     .catch((err) => console.log(err));
 };
@@ -15,8 +15,8 @@ const getAllToDo = (setToDo) => {
 const addToDo = (text, setText, setToDo) => {
   axios
     .post(`${baseUrl}/save`, { text })
-    .then(() => {
-      // console.log(data);
+    .then((data) => {
+      console.log(data);
       setText("");
       getAllToDo(setToDo);
     })

@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 
 function App() {
   const [filter, setFilter] = useState("");
-  const [toDo, setToDo] = useState([]);
+  const [toDoAll, setToDo] = useState([]);
   const [text, setText] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [toDoId, setToDoId] = useState("");
@@ -34,59 +34,33 @@ function App() {
     setToDoId(_id);
   };
 
-  const sort = (array) => {
-    return array.sort((a, b) => {
-      const textA = a.text.toUpperCase();
-      const textB = b.text.toUpperCase();
-      if (textA < textB) {
-        return -1;
-      }
-      if (textA > textB) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
-  const toDoListFilter = (array) => {
-    return sort(
-      array.filter(
-        (task) => task.done == false && task.text.toLowerCase().includes(filter)
-      )
-    );
-  };
-
-  const doneListFilter = (array) => {
-    let result = [];
-    let temp = array.filter(
-      (task) => task.done == true && task.text.toLowerCase().includes(filter)
-    );
-    if (temp.length > 10) {
-      temp.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-      result = temp.slice(0, 10);
-    } else {
-      result = temp;
-    }
-    return sort(result);
-  };
-
-  const ToDoTask = ({ task }) => {
+  const ToDoTask = ({ taskArray = [] }) => {
     ToDoTask.propTypes = {
-      task: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-        done: PropTypes.bool.isRequired,
-      }),
+      taskArray: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
+          done: PropTypes.bool.isRequired,
+        })
+      ),
     };
     return (
-      <ToDo
-        task={task}
-        updateMode={() => updateMode(task._id, task.text)}
-        deleteToDo={() => deleteToDo(task._id, setToDo)}
-        updateStatusDone={({ done }) =>
-          updateStatusDone(task._id, done, setToDo)
-        }
-      />
+      taskArray.length > 0 &&
+      taskArray
+        .filter((task) => {
+          return task.text.toLowerCase().includes(filter);
+        })
+        .map((task) => (
+          <ToDo
+            key={task._id}
+            task={task}
+            updateMode={() => updateMode(task._id, task.text)}
+            deleteToDo={() => deleteToDo(task._id, setToDo)}
+            updateStatusDone={({ done }) =>
+              updateStatusDone(task._id, done, setToDo)
+            }
+          />
+        ))
     );
   };
 
@@ -141,10 +115,7 @@ function App() {
               <hr />
             </Col>
           </Row>
-          {toDo.length > 0 &&
-            toDoListFilter(toDo).map((task) => (
-              <ToDoTask key={task._id} task={task} />
-            ))}
+          <ToDoTask taskArray={toDoAll.todo} />
         </Col>
         <Col>
           <Row>
@@ -153,10 +124,7 @@ function App() {
               <hr />
             </Col>
           </Row>
-          {toDo.length > 0 &&
-            doneListFilter(toDo).map((task) => (
-              <ToDoTask key={task._id} task={task} />
-            ))}
+          <ToDoTask taskArray={toDoAll.todoDone} />
         </Col>
       </Row>
     </Container>
